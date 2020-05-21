@@ -39,9 +39,11 @@ const displayCart = () => {
   dialog.setAttribute("open", true);
 };
 
+const hideCart = () => dialog.removeAttribute("open");
+
 const toggleCart = () => {
   if (dialog.hasAttribute("open")) {
-    dialog.removeAttribute("open");
+    hideCart();
   } else {
     displayCart();
   }

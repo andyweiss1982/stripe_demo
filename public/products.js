@@ -22,7 +22,7 @@ const confirmPurchase = () => {
   );
   if (sessionId) {
     document.querySelector('[role="status"]').innerHTML = `
-      <div id="confirmation">
+      <div class="success">
         Your purchase was successful!  A receipt will be sent to your email address.
       </div> `;
   }

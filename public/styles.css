@@ -24,12 +24,16 @@ header {
   cursor: pointer;
 }
 
+#cart-button {
+  margin: 0;
+}
+
 #cart {
   position: absolute;
   right: 0;
   top: 0;
   font-size: 1rem;
-  margin: 1.5rem;
+  margin: 1rem;
   user-select: none;
   width: 20rem;
   display: flex;
@@ -37,7 +41,7 @@ header {
 }
 
 dialog {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   right: 0;
   left: auto;
 }
@@ -65,7 +69,7 @@ dialog li {
   text-align: center;
 }
 
-#confirmation {
+[role="status"] .success {
   padding: 1rem;
   color: dodgerblue;
 }
