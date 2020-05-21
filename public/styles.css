@@ -54,7 +54,8 @@ dialog li {
   align-items: center;
 }
 
-dialog li span {
+.cart-entry,
+.cart-buttons {
   margin: 0.5rem;
 }
 
