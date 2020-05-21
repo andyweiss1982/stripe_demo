@@ -27,13 +27,13 @@ const renderLineItem = (priceId) => {
 };
 
 const displayCart = () => {
-  const lineItems = Object.keys(cartData).map((priceId) =>
-    renderLineItem(priceId)
-  );
+  const lineItems = Object.keys(cartData)
+    .map((priceId) => renderLineItem(priceId))
+    .join("");
   dialog.innerHTML = `
-    <ul>${lineItems.join("") || `<li>Nothing in cart</li>`}</ul>
+    <ul>${lineItems || `<li>Nothing in cart</li>`}</ul>
     <button onclick="checkout()" ${
-      !lineItems.length ? "disabled" : ""
+      !lineItems ? "disabled" : ""
     }>Checkout</button>
   `;
   dialog.setAttribute("open", true);
