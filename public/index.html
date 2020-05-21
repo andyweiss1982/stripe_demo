@@ -8,9 +8,18 @@
     <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
-    <header id="heading" class="clickable"><h1>My Store</h1></header>
+    <header>
+      <h1><span id="heading" class="clickable">My Store</span></h1>
+      <aside id="cart">
+        <div class="clickable" onclick="toggleCart()">
+          Cart
+        </div>
+        <dialog id="dialog"></dialog>
+      </aside>
+    </header>
     <div role="status"></div>
     <main id="main"></main>
     <script src="products.js"></script>
+    <script src="cart.js"></script>
   </body>
 </html>

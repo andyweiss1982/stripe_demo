@@ -24,6 +24,40 @@ header {
   cursor: pointer;
 }
 
+#cart {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1rem;
+  margin: 1.5rem;
+  user-select: none;
+  width: 20rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+dialog {
+  margin-top: 2rem;
+  right: 0;
+  left: auto;
+}
+
+dialog ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+dialog li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+dialog li span {
+  margin: 0.5rem;
+}
+
 [role="status"] {
   margin: 4rem 0 1rem;
   background-color: white;
@@ -63,11 +97,16 @@ button {
   font-size: 1rem;
   font-family: inherit;
   padding: 0.5rem;
-  margin: 1rem;
+  margin: 1rem 0;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
   background-color: deepskyblue;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  background-color: gray;
 }

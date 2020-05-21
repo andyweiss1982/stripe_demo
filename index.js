@@ -11,6 +11,7 @@ const app = express();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(express.static("public"));
+app.use(express.json());
 
 app.get("/products", async (req, res) => {
   const { data: products } = await stripe.products.list({ limit: 100 });
@@ -21,10 +22,15 @@ app.get("/products", async (req, res) => {
   res.json(products);
 });
 
-app.get("/checkout/:id", async (req, res) => {
+app.post("/checkout", async (req, res) => {
+  const { cartData } = req.body;
+  const line_items = Object.keys(cartData).map((price) => ({
+    price,
+    quantity: cartData[price],
+  }));
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    line_items: [{ price: req.params.id, quantity: 1 }],
+    line_items,
     mode: "payment",
     success_url: `${ROOT_URL}/?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: ROOT_URL,
