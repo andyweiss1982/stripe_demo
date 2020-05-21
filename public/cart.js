@@ -12,20 +12,24 @@ const removeFromCart = (priceId) => {
   displayCart();
 };
 
+const renderLineItem = (priceId) => {
+  const product = products.find((product) => product.price.id === priceId);
+  return `
+  <li>
+    <span class="cart-entry">
+      ${product.name}: ${cartData[priceId]} 
+    </span>
+    <span class="cart-buttons"> 
+      <button onclick="addToCart('${priceId}')">+</button> 
+      <button onclick="removeFromCart('${priceId}')">-</button>
+    </span>
+  </li>`;
+};
+
 const displayCart = () => {
-  const lineItems = Object.keys(cartData).map((priceId) => {
-    const product = products.find((product) => product.price.id === priceId);
-    return `
-      <li>
-        <span class="cart-entry">
-          ${product.name}: ${cartData[priceId]} 
-        </span>
-        <span class="cart-buttons"> 
-          <button onclick="addToCart('${priceId}')">+</button> 
-          <button onclick="removeFromCart('${priceId}')">-</button>
-        </span>
-      </li>`;
-  });
+  const lineItems = Object.keys(cartData).map((priceId) =>
+    renderLineItem(priceId)
+  );
   dialog.innerHTML = `
     <ul>${lineItems.join("") || `<li>Nothing in cart</li>`}</ul>
     <button onclick="checkout()" ${
