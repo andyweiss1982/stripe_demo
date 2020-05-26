@@ -16,15 +16,22 @@ const fetchProducts = async () => {
   main.innerHTML = products.map((product) => renderProduct(product)).join("");
 };
 
-const confirmPurchase = () => {
+const confirmPurchase = async () => {
   const sessionId = new URLSearchParams(window.location.search).get(
     "session_id"
   );
   if (sessionId) {
-    document.querySelector('[role="status"]').innerHTML = `
-      <div class="success">
-        Your purchase was successful!  A receipt will be sent to your email address.
-      </div> `;
+    const response = await fetch("/purchases", {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify({ session_id: sessionId }),
+    });
+    if (response.ok) {
+      document.querySelector('[role="status"]').innerHTML = `
+        <div class="success">
+          Your purchase was successful!  A receipt will be sent to your email address.
+        </div> `;
+    }
   }
 };
 

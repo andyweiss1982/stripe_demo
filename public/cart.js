@@ -4,11 +4,21 @@ const cartData = {};
 
 const addToCart = (priceId) => {
   cartData[priceId] ? cartData[priceId]++ : (cartData[priceId] = 1);
+  fetch("/cart_additions", {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify({ price_id: priceId }),
+  });
   displayCart();
 };
 
 const removeFromCart = (priceId) => {
   cartData[priceId] > 1 ? cartData[priceId]-- : delete cartData[priceId];
+  fetch("/cart_removals", {
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify({ price_id: priceId }),
+  });
   displayCart();
 };
 
