@@ -12,7 +12,7 @@ const app = express();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const { Pool } = require("pg");
-const pool = new Pool();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 app.use(express.static("public"));
 app.use(express.json());
